@@ -16,7 +16,8 @@ export const compute = (
   if (extractionType === 'smart') {
     numbers = getAllNumbers(input);
   } else {
-    const parts = input.split(separator);
+    const normalizedSeparator = separator.replace(/\\n/g, '\n');
+    const parts = input.split(normalizedSeparator);
     // Filter out and convert parts that are numbers
     numbers = parts
       .filter((part) => !isNaN(Number(part)) && part.trim() !== '')
