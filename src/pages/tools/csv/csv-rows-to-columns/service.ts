@@ -25,7 +25,9 @@ export function csvRowsToColumns(
     .split('\n')
     .map((row) => row.split(','))
     .filter(
-      (row) => row.length > 0 && !row[0].trim().startsWith(commentCharacter)
+      (row) =>
+        row.some((cell) => cell.trim() !== '') &&
+        !row[0].trim().startsWith(commentCharacter)
     );
   const columnCount = Math.max(...rows.map((row) => row.length));
   for (let i = 0; i < rows.length; i++) {

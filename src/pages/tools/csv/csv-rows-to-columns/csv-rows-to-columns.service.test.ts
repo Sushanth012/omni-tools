@@ -58,4 +58,10 @@ describe('csvRowsToColumns', () => {
       'Variety,Arabica,Robusta,Liberica,Mocha\nOrigin,Ethiopia,Africa,Philippines,1x'
     );
   });
+
+  it('should remove blank lines before transposing', () => {
+    const input = 'a,b\n\nc,d';
+    const result = csvRowsToColumns(input, false, '', '#');
+    expect(result).toBe('a,c\nb,d');
+  });
 });
